@@ -15,7 +15,7 @@ router.use(express.json());
 
 let random = randomNumber(30) + Date.now();
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../build/upload/temp'),
+    destination: path.join(__dirname, '../public/upload/temp'),
     filename: (req, file, cb) => {
         cb(null, random + path.extname(file.originalname));
     }
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage,
-    dest: path.join(__dirname, '../build/upload/temp')
+    dest: path.join(__dirname, '../public/upload/temp')
 }).single('image');
 
 router.use(
@@ -40,7 +40,7 @@ router.post("/removeimage", cors.corsWithOptions, authenticate.verifyUser, (req,
 
     Imagen.findById(req.body.imageid)
     .then(imagen =>{
-        let pathfile = path.join(__dirname, '../build/', imagen.filename)
+        let pathfile = path.join(__dirname, '../public/', imagen.filename)
         fs.unlink(pathfile, (err) => {
             if (err) {
                 // other errors, e.g. maybe we don't have enough permission
@@ -97,7 +97,7 @@ router.post("/removevideo", cors.corsWithOptions, authenticate.verifyUser, (req,
     Video.findById(req.body.imageid)
     .then(video =>{
         let fileRename = video.filename.split('#')[0]
-        let pathfile = path.join(__dirname, '../build/', fileRename)
+        let pathfile = path.join(__dirname, '../public/', fileRename)
         fs.unlink(pathfile, (err) => {
             if (err) {
                 console.error("Error occurred while trying to remove file");

@@ -12,7 +12,7 @@ router.options("*", cors.corsWithOptions, (req, res) => {
     res.sendStatus(200)
 });
 router.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
   });
 
 router.get('/publications/:usuario', cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {

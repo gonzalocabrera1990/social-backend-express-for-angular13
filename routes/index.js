@@ -8,10 +8,10 @@ var authenticate = require("../authenticate");
 router.use(express.json());
 
 app.get('/users', function (req, res, next) {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
 });
 router.get('/signup', function (req, res, next) {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
 });
 
 router.put("/settings/:userID", cors.corsWithOptions, (req, res, next) => {
